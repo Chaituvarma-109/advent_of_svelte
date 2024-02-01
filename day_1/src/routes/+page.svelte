@@ -37,8 +37,11 @@
     <div class="flex flex-col basis-1/2">
         <div class="flex">
             <input type="text" bind:value={pname} class="input input-bordered w-full max-w-xs">
+            <div class="divider divider-horizontal"></div>
             <input type="number" bind:value={ptally} class="input input-bordered w-full max-w-xs" />
         </div>
+
+        <div class="divider"></div>
 
         <div class="overflow-x-auto">
             <table class="table-md">
