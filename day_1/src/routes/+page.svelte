@@ -3,8 +3,8 @@
 
     export let data: PageData
 
-    let pname = 'johnny';
-    let ptally: number = 0;
+    let elfSelected: string;
+    let tallySelected: number;
 
     $: ({ letter } = data)
 </script>
@@ -16,17 +16,17 @@
 
 <div class="flex m-10">
     <div class="overflow-x-auto basis-1/2">
-        <table class="table-md">
+        <table class="table table-xs table-zebra border border-slate-500">
             <tr>
-                <th>Name</th>
-                <th>tally</th>
-                <th>NaughtyorNice</th>
+                <th class="border border-slate-600">Name</th>
+                <th class="border border-slate-600">tally</th>
+                <th class="border border-slate-600">NaughtyorNice</th>
             </tr>
             {#each letter as {name, tally} }
                 <tr>
-                    <td>{name}</td>
-                    <td>{tally}</td>
-                    <td>{tally > 0 ? 'Nice' : 'Naughty'}</td>
+                    <td class="border border-slate-700">{name}</td>
+                    <td class="border border-slate-700">{tally}</td>
+                    <td class="border border-slate-700">{tally > 0 ? 'Nice' : 'Naughty'}</td>
                 </tr>
             {/each}
         </table>
@@ -36,26 +36,21 @@
 
     <div class="flex flex-col basis-1/2">
         <div class="flex">
-            <input type="text" bind:value={pname} class="input input-bordered w-full max-w-xs">
+            <select bind:value={elfSelected} class="select select-sm w-full max-w-xs">
+                {#each letter as {name, tally}}
+                    <option value={name}>{name}</option>
+                {/each}
+            </select>
             <div class="divider divider-horizontal"></div>
-            <input type="number" bind:value={ptally} class="input input-bordered w-full max-w-xs" />
+            <select bind:value={tallySelected} class="select select-sm w-full max-w-xs">
+                {#each letter as {tally}}
+                    <option value={tally}>{tally}</option>
+                {/each}
+            </select>
         </div>
-
         <div class="divider"></div>
-
-        <div class="overflow-x-auto">
-            <table class="table-md">
-                <tr>
-                    <th>name</th>
-                    <th>tally</th>
-                    <th>NaughtyorNice</th>
-                </tr>
-                <tr>
-                    <td>{pname}</td>
-                    <td>{ptally}</td>
-                    <td>{ptally > 0 ? 'Nice' : 'Naughty'}</td>
-                </tr>
-            </table>
+        <div>
+            <p><strong>{elfSelected}</strong> has been <strong>{tallySelected > 0 ? 'Nice' : 'Naughty'}</strong> this year</p>
         </div>
     </div>
 </div>
