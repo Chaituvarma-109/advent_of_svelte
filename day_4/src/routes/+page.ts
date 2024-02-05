@@ -2,6 +2,7 @@ import type { PageLoad } from "./$types";
 
 export type HeartData = {
   heartRate: number;
+  time: number;
 };
 
 export const load: PageLoad = async ({ fetch }) => {
@@ -10,5 +11,9 @@ export const load: PageLoad = async ({ fetch }) => {
   );
   const heartdata = await res.json();
 
-  return { heartRates: [{ heartRate: heartdata.heartRate }] as HeartData[] };
+  return {
+    heartRates: [
+      { heartRate: heartdata.heartRate, time: Date.now() },
+    ] as HeartData[],
+  };
 };
